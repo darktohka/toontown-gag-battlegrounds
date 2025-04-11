@@ -16,7 +16,8 @@ const LanguageSwitcher = () => {
   
   const languages = [
     { code: 'en', label: 'English' },
-    { code: 'es', label: 'Español' }
+    { code: 'es', label: 'Español' },
+    { code: 'hu', label: 'Magyar' }
   ];
   
   const changeLanguage = (lng: string) => {

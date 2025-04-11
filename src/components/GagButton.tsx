@@ -13,13 +13,16 @@ interface GagButtonProps {
 const GagButton = ({ gag, onClick, selected, disabled }: GagButtonProps) => {
   const [isHovered, setIsHovered] = useState(false);
   
+  // Check if it's a healing gag (negative damage value indicates healing)
+  const isHealingGag = gag.damage < 0;
+  
   return (
     <div className="relative">
       {isHovered && (
         <div className="absolute bottom-full left-1/2 mb-2 w-48 -translate-x-1/2 rounded-md bg-black p-2 text-xs text-white opacity-90">
           <p className="font-bold">{gag.name}</p>
           <p>{gag.description}</p>
-          <p>Damage: {Math.abs(gag.damage)}</p>
+          <p>{isHealingGag ? 'Heals' : 'Damage'}: {Math.abs(gag.damage)}</p>
           <p>Accuracy: {gag.accuracy}%</p>
         </div>
       )}

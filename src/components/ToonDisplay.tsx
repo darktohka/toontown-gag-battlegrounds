@@ -13,7 +13,7 @@ const ToonDisplay = ({ toon }: ToonDisplayProps) => {
   return (
     <div className="flex flex-col items-center">
       <div className="text-9xl">
-        😺
+        🐶
       </div>
       <div className="mt-4 w-full">
         <h2 className="text-xl font-bold">{toon.name}</h2>

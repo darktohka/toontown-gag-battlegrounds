@@ -5,6 +5,7 @@ import { initReactI18next } from 'react-i18next';
 // Import translations
 import en from './locales/en.json';
 import es from './locales/es.json';
+import hu from './locales/hu.json';
 
 // Initialize i18next
 i18n
@@ -12,7 +13,8 @@ i18n
   .init({
     resources: {
       en: { translation: en },
-      es: { translation: es }
+      es: { translation: es },
+      hu: { translation: hu }
     },
     lng: 'en', // Default language
     fallbackLng: 'en',

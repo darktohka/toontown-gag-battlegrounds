@@ -1,0 +1,46 @@
+
+{
+  "app": {
+    "title": "Toontown Gag Csatatér",
+    "footer": "Disney's Toontown Online által inspirálva"
+  },
+  "battle": {
+    "status": {
+      "notStarted": "A csata még nem kezdődött el.",
+      "started": "A csata elkezdődött! Válassz egy trükköt a támadáshoz.",
+      "selectingGag": "Válassz Trükköt",
+      "usingGag": "Trükk használata...",
+      "cogAttacking": "A Cog támad!",
+      "defeated": "Legyőzted a {{name}}-t!",
+      "gameOver": "Elfogyott a Laff-od! Játék vége!"
+    },
+    "turn": "{{count}}. kör: {{action}}",
+    "actions": {
+      "used": "Használtad: {{name}} és {{damage}} sebzést okoztál!",
+      "healed": "Használtad: {{name}} és gyógyultál {{amount}} Laff-ot!",
+      "missed": "{{name}} nem talált!",
+      "cogAttack": "{{name}} támadott és {{damage}} sebzést okozott!"
+    },
+    "results": {
+      "hit": "{{name}} talált {{damage}} sebzéssel!",
+      "healed": "Gyógyultál {{amount}} Laff-ot!",
+      "missed": "{{name}} nem talált!",
+      "cogHit": "{{name}} eltalált téged {{damage}} sebzéssel!",
+      "defeated": "Legyőzted a {{name}}-t!",
+      "ended": "Csata Vége!"
+    }
+  },
+  "controls": {
+    "gags": "Trükkjeid",
+    "use": "{{name}} használata",
+    "selectGag": "Válassz Trükköt",
+    "startNew": "Új Csata Indítása",
+    "newBattle": "Új csata kezdődött!"
+  },
+  "toon": {
+    "laff": "Laff"
+  },
+  "cog": {
+    "level": "{{level}}. szintű {{type}}"
+  }
+}

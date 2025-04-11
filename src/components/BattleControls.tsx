@@ -1,4 +1,5 @@
 
+import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import { Gag, BattleStatus, Toon } from '../types/game';
 import GagButton from './GagButton';
@@ -21,8 +22,10 @@ const BattleControls = ({
   status,
   onRestartBattle
 }: BattleControlsProps) => {
+  const { t } = useTranslation();
+
   const handleGagClick = (gag: Gag) => {
-    toast.info(`Selected ${gag.name}!`);
+    toast.info(`${t('controls.use', { name: gag.name })}`);
     onSelectGag(gag);
   };
   
@@ -31,16 +34,16 @@ const BattleControls = ({
   
   return (
     <div className="flex flex-col items-center gap-4 p-4">
-      <h2 className="text-2xl font-bold">Your Gags</h2>
+      <h2 className="text-2xl font-bold">{t('controls.gags')}</h2>
       
       {isBattleEnded ? (
         <div className="text-center">
-          <h3 className="text-xl font-bold mb-4">Battle Ended!</h3>
+          <h3 className="text-xl font-bold mb-4">{t('battle.results.ended')}</h3>
           <Button 
             onClick={onRestartBattle}
             className="bg-toontown-blue hover:bg-toontown-blue/80 text-white"
           >
-            Start New Battle
+            {t('controls.startNew')}
           </Button>
         </div>
       ) : (
@@ -63,14 +66,14 @@ const BattleControls = ({
               disabled={!selectedGag}
               className="mt-4 px-8 py-6 text-lg bg-toontown-blue hover:bg-toontown-blue/80 text-white disabled:bg-gray-300"
             >
-              {selectedGag ? `Use ${selectedGag.name}` : "Select a Gag"}
+              {selectedGag ? t('controls.use', { name: selectedGag.name }) : t('controls.selectGag')}
             </Button>
           )}
           
           {!isSelectingGag && !isBattleEnded && (
             <div className="animate-pulse text-lg font-bold">
-              {status === BattleStatus.ANIMATING_ATTACK && "Using gag..."}
-              {status === BattleStatus.COG_ATTACKING && "Cog is attacking..."}
+              {status === BattleStatus.ANIMATING_ATTACK && t('battle.status.usingGag')}
+              {status === BattleStatus.COG_ATTACKING && t('battle.status.cogAttacking')}
             </div>
           )}
         </>

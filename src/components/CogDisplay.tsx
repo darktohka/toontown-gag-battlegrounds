@@ -1,4 +1,5 @@
 
+import { useTranslation } from 'react-i18next';
 import { Cog } from '../types/game';
 import { cn } from '@/lib/utils';
 
@@ -8,6 +9,7 @@ interface CogDisplayProps {
 }
 
 const CogDisplay = ({ cog, damaged }: CogDisplayProps) => {
+  const { t } = useTranslation();
   const healthPercentage = (cog.currentHealth / cog.maxHealth) * 100;
   
   return (
@@ -17,7 +19,7 @@ const CogDisplay = ({ cog, damaged }: CogDisplayProps) => {
       </div>
       <div className="mt-4 w-full">
         <h2 className="text-xl font-bold">{cog.name}</h2>
-        <p className="text-sm">Level {cog.level} {cog.type}</p>
+        <p className="text-sm">{t('cog.level', { level: cog.level, type: cog.type })}</p>
         <div className="mt-2 cog-health-bar">
           <div 
             className="cog-health-fill" 

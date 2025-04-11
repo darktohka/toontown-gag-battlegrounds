@@ -1,4 +1,5 @@
 
+import { useTranslation } from 'react-i18next';
 import { Toon } from '../types/game';
 
 interface ToonDisplayProps {
@@ -6,6 +7,7 @@ interface ToonDisplayProps {
 }
 
 const ToonDisplay = ({ toon }: ToonDisplayProps) => {
+  const { t } = useTranslation();
   const laffPercentage = (toon.currentLaff / toon.maxLaff) * 100;
   
   return (
@@ -21,7 +23,9 @@ const ToonDisplay = ({ toon }: ToonDisplayProps) => {
             style={{ width: `${laffPercentage}%` }}
           ></div>
         </div>
-        <p className="text-sm text-center mt-1">{toon.currentLaff}/{toon.maxLaff} Laff</p>
+        <p className="text-sm text-center mt-1">
+          {toon.currentLaff}/{toon.maxLaff} {t('toon.laff')}
+        </p>
       </div>
     </div>
   );

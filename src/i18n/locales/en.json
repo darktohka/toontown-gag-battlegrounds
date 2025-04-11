@@ -1,0 +1,46 @@
+
+{
+  "app": {
+    "title": "Toontown Gag Battlegrounds",
+    "footer": "Inspired by Disney's Toontown Online"
+  },
+  "battle": {
+    "status": {
+      "notStarted": "Battle has not started yet.",
+      "started": "Battle started! Choose a gag to attack.",
+      "selectingGag": "Select a Gag",
+      "usingGag": "Using gag...",
+      "cogAttacking": "Cog is attacking...",
+      "defeated": "You defeated the {{name}}!",
+      "gameOver": "You ran out of Laff! Game over!"
+    },
+    "turn": "Turn {{count}}: {{action}}",
+    "actions": {
+      "used": "You used {{name}} and dealt {{damage}} damage!",
+      "healed": "You used {{name}} and healed {{amount}} Laff!",
+      "missed": "{{name}} missed!",
+      "cogAttack": "{{name}} attacked and dealt {{damage}} damage!"
+    },
+    "results": {
+      "hit": "{{name}} hit for {{damage}} damage!",
+      "healed": "Healed {{amount}} Laff!",
+      "missed": "{{name}} missed!",
+      "cogHit": "{{name}} hit you for {{damage}} damage!",
+      "defeated": "You defeated the {{name}}!",
+      "ended": "Battle Ended!"
+    }
+  },
+  "controls": {
+    "gags": "Your Gags",
+    "use": "Use {{name}}",
+    "selectGag": "Select a Gag",
+    "startNew": "Start New Battle",
+    "newBattle": "New battle started!"
+  },
+  "toon": {
+    "laff": "Laff"
+  },
+  "cog": {
+    "level": "Level {{level}} {{type}}"
+  }
+}

@@ -1,0 +1,46 @@
+
+{
+  "app": {
+    "title": "Campo de Batalla de Bromas de Toontown",
+    "footer": "Inspirado en Disney's Toontown Online"
+  },
+  "battle": {
+    "status": {
+      "notStarted": "La batalla aún no ha comenzado.",
+      "started": "¡Batalla iniciada! Elige una broma para atacar.",
+      "selectingGag": "Selecciona una Broma",
+      "usingGag": "Usando broma...",
+      "cogAttacking": "¡El Cog está atacando!",
+      "defeated": "¡Derrotaste al {{name}}!",
+      "gameOver": "¡Te quedaste sin Laff! ¡Juego terminado!"
+    },
+    "turn": "Turno {{count}}: {{action}}",
+    "actions": {
+      "used": "¡Usaste {{name}} y causaste {{damage}} de daño!",
+      "healed": "¡Usaste {{name}} y recuperaste {{amount}} de Laff!",
+      "missed": "¡{{name}} falló!",
+      "cogAttack": "¡{{name}} atacó y causó {{damage}} de daño!"
+    },
+    "results": {
+      "hit": "¡{{name}} impactó por {{damage}} de daño!",
+      "healed": "¡Recuperado {{amount}} de Laff!",
+      "missed": "¡{{name}} falló!",
+      "cogHit": "¡{{name}} te golpeó por {{damage}} de daño!",
+      "defeated": "¡Derrotaste al {{name}}!",
+      "ended": "¡Batalla Terminada!"
+    }
+  },
+  "controls": {
+    "gags": "Tus Bromas",
+    "use": "Usar {{name}}",
+    "selectGag": "Selecciona una Broma",
+    "startNew": "Comenzar Nueva Batalla",
+    "newBattle": "¡Nueva batalla iniciada!"
+  },
+  "toon": {
+    "laff": "Laff"
+  },
+  "cog": {
+    "level": "Nivel {{level}} {{type}}"
+  }
+}

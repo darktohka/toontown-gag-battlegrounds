@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import ToonDisplay from '../components/ToonDisplay';
 import CogDisplay from '../components/CogDisplay';
 import BattleControls from '../components/BattleControls';
@@ -26,16 +27,18 @@ const initialToon: Toon = {
   gags: gags
 };
 
-const initialState: BattleState = {
-  toon: initialToon,
-  cog: getRandomCog(),
-  status: BattleStatus.SELECTING_GAG,
-  selectedGag: null,
-  battleLog: ['Battle started! Choose a gag to attack.'],
-  turnCount: 1
-};
-
 const Index = () => {
+  const { t } = useTranslation();
+
+  const initialState: BattleState = {
+    toon: initialToon,
+    cog: getRandomCog(),
+    status: BattleStatus.SELECTING_GAG,
+    selectedGag: null,
+    battleLog: [t('battle.status.started')],
+    turnCount: 1
+  };
+
   const [battleState, setBattleState] = useState<BattleState>(initialState);
   const [cogDamaged, setCogDamaged] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
@@ -91,13 +94,16 @@ const Index = () => {
       setBattleState((prev) => ({
         ...prev,
         battleLog: [
-          `Turn ${prev.turnCount}: ${selectedGag.name} missed!`,
+          t('battle.turn', { 
+            count: prev.turnCount, 
+            action: t('battle.actions.missed', { name: selectedGag.name })
+          }),
           ...prev.battleLog
         ],
         status: BattleStatus.COG_ATTACKING
       }));
       
-      toast.error(`${selectedGag.name} missed!`);
+      toast.error(t('battle.results.missed', { name: selectedGag.name }));
     }
   };
 
@@ -115,13 +121,16 @@ const Index = () => {
         currentLaff: newLaff
       },
       battleLog: [
-        `Turn ${prev.turnCount}: You used ${selectedGag.name} and healed ${healAmount} Laff!`,
+        t('battle.turn', { 
+          count: prev.turnCount, 
+          action: t('battle.actions.healed', { name: selectedGag.name, amount: healAmount })
+        }),
         ...prev.battleLog
       ],
       status: BattleStatus.COG_ATTACKING
     }));
     
-    toast.success(`Healed ${healAmount} Laff!`);
+    toast.success(t('battle.results.healed', { amount: healAmount }));
   };
 
   const handleDamageGag = () => {
@@ -136,28 +145,35 @@ const Index = () => {
       currentHealth: newHealth
     };
     
-    setBattleState((prev) => ({
-      ...prev,
-      cog: updatedCog,
-      battleLog: [
-        `Turn ${prev.turnCount}: You used ${selectedGag.name} and dealt ${selectedGag.damage} damage!`,
-        ...prev.battleLog
-      ],
-      status: newHealth <= 0 ? BattleStatus.BATTLE_ENDED : BattleStatus.COG_ATTACKING
-    }));
+    setBattleState((prev) => {
+      const newState = {
+        ...prev,
+        cog: updatedCog,
+        battleLog: [
+          t('battle.turn', { 
+            count: prev.turnCount, 
+            action: t('battle.actions.used', { name: selectedGag.name, damage: selectedGag.damage })
+          }),
+          ...prev.battleLog
+        ],
+        status: newHealth <= 0 ? BattleStatus.BATTLE_ENDED : BattleStatus.COG_ATTACKING
+      };
+
+      return newState;
+    });
     
     if (newHealth <= 0) {
-      toast.success(`You defeated the ${cog.name}!`);
+      toast.success(t('battle.results.defeated', { name: cog.name }));
       
       setBattleState((prev) => ({
         ...prev,
         battleLog: [
-          `You defeated the ${cog.name}!`,
+          t('battle.status.defeated', { name: cog.name }),
           ...prev.battleLog
         ]
       }));
     } else {
-      toast.success(`${selectedGag.name} hit for ${selectedGag.damage} damage!`);
+      toast.success(t('battle.results.hit', { name: selectedGag.name, damage: selectedGag.damage }));
       
       // Reset the damaged state after animation
       setTimeout(() => {
@@ -182,7 +198,10 @@ const Index = () => {
       ...prev,
       toon: updatedToon,
       battleLog: [
-        `Turn ${prev.turnCount}: ${cog.name} attacked and dealt ${damageAmount} damage!`,
+        t('battle.turn', { 
+          count: prev.turnCount, 
+          action: t('battle.actions.cogAttack', { name: cog.name, damage: damageAmount })
+        }),
         ...prev.battleLog
       ],
       status: newLaff <= 0 ? BattleStatus.BATTLE_ENDED : BattleStatus.SELECTING_GAG,
@@ -191,39 +210,41 @@ const Index = () => {
     }));
     
     if (newLaff <= 0) {
-      toast.error("Oh no! You ran out of Laff!");
+      toast.error(t('battle.status.gameOver'));
       
       setBattleState((prev) => ({
         ...prev,
         battleLog: [
-          "You ran out of Laff! Game over!",
+          t('battle.status.gameOver'),
           ...prev.battleLog
         ]
       }));
     } else {
-      toast.error(`${cog.name} hit you for ${damageAmount} damage!`);
+      toast.error(t('battle.results.cogHit', { name: cog.name, damage: damageAmount }));
     }
   };
 
   const restartBattle = () => {
     setBattleState({
-      ...initialState,
-      cog: getRandomCog(),
-      battleLog: ['New battle started! Choose a gag to attack.'],
       toon: {
         ...initialToon,
         currentLaff: initialToon.maxLaff
-      }
+      },
+      cog: getRandomCog(),
+      status: BattleStatus.SELECTING_GAG,
+      selectedGag: null,
+      battleLog: [t('battle.status.started')],
+      turnCount: 1
     });
     
-    toast.info("New battle started!");
+    toast.info(t('controls.newBattle'));
   };
 
   return (
     <div className="min-h-screen bg-toontown-blue/10 py-8">
       <div className="container max-w-5xl mx-auto">
         <h1 className="mb-8 text-center text-4xl font-bold text-toontown-blue shadow-sm">
-          Toontown Gag Battlegrounds
+          {t('app.title')}
         </h1>
         
         <div className="grid gap-8 rounded-2xl bg-white/60 p-6 shadow-lg backdrop-blur-sm">
@@ -261,7 +282,7 @@ const Index = () => {
         </div>
         
         <footer className="mt-8 text-center text-sm text-toontown-blue/70">
-          <p>Inspired by Disney's Toontown Online</p>
+          <p>{t('app.footer')}</p>
         </footer>
       </div>
     </div>
